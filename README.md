@@ -21,6 +21,32 @@ CLI micro framework made in java
 
 ## Changelog
 
+- v1.0.1 (26.05.2025) Better saftey and strucutre
+   - added guard package to guard for security
+      - PrintDog the cute k9 like hero to stop you from using    
+        normal print... wil raise RuntimeException
+   - split up View from their terminal methods and add action 
+     factory methods
+      - this means breaking changes of View
+      - view has now 2 acces points
+      1. terminal
+      this is a fast way to acces terminal information for
+      responsive layouts and co and also print adn fill
+        - terminal.print
+        - terminal.getWidth
+        - terminal.getHeight
+        - terminal.getCurrentRclCount
+        - terminal.fill
+      2. actions
+      factory methods always acesible directly in view...
+      all build in actions will be afaible like this in future
+        - actions.nop
+        - actions.redirect
+        - actions.stop
+        - actions.dd
+   - added dump and die method similar to laravel
+   - and much more fine bug fixes
+
 - v0.0.1 (26.05.2025) First release
    - for better version control this is now v0.0.1
    - still wil leave the old log
