@@ -37,6 +37,7 @@ public class Interface {
     }
     
     private Boolean cycle() {
+        selectedView.initBase(this);
         System.out.print("\r\n"); // Force a clean break before screen clear
         System.out.flush(); 
         this.__terminalSize = TerminalSize.getTerminalSize();
@@ -82,7 +83,6 @@ public class Interface {
 
     public void start() {
         View.scanner = scanner;
-        View.__base = this;
         registerView(v_help.class);
         registerView(v_select.class);
 

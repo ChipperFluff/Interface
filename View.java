@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import Interface.exceptions.DuplicateViewMatchException;
 
 public abstract class View {
+    protected static Global global = Global.getInstance();
+    protected static ViewActionFactories actions = new ViewActionFactories();
+    protected ViewTerminalAcces terminal;
     public static Scanner scanner;
     public static Interface __base;
-    protected static Global global = Global.getInstance();
     public String viewPrompt;
     public String viewSignature;
     public String helperText;
@@ -16,6 +18,11 @@ public abstract class View {
     public abstract void draw();
     public abstract Action onCommand(String command);
     public abstract Boolean onSelection(String userInputRaw);
+
+    public void initBase(Interface base) {
+        View.__base = base;
+        this.terminal = new ViewTerminalAcces(base);
+    }
 
     public static View instantiate(Class<? extends View> viewClass) {
         try {
@@ -40,22 +47,5 @@ public abstract class View {
         }
 
         return matched.isEmpty() ? null : matched.get(0);
-    }
-
-    public static void print(String text) {
-        __base.__renderCycleLines += 1;
-        System.out.print(text);
-    }
-
-    public static int getTerminalWidth() {
-        return __base.__terminalSize[1];
-    }
-
-    public static int getTerminalHeight() {
-        return __base.__terminalSize[0];
-    }
-
-    public static int getCurrentRclCount() {
-        return __base.__renderCycleLines;
     }
 }
