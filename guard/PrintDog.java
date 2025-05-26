@@ -4,7 +4,6 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Set;
 import java.util.HashSet;
-
 import Interface.exceptions.IllegalTerminalPrintException;
 
 public class PrintDog {
@@ -12,33 +11,37 @@ public class PrintDog {
     private static final Set<String> trustedPackages = new HashSet<>();
 
     public static void start(boolean strict) {
-        // Register your trusted namespaces (framework internals)
         trustedPackages.add("Interface.");
-        trustedPackages.add("your.package."); // <- Add your framework pkg here
 
         System.setOut(new PrintStream(new OutputStream() {
-            @Override
-            public void write(int b) {
-                // swallow byte stream output; not relevant
-            }
+            @Override public void write(int b) {}
         }, true) {
-            @Override
-            public void println(String x) {
+            private void handle(Object data) {
                 if (isFromTrustedSource() || !strict) {
-                    originalOut.println(x);
+                    originalOut.println(data);
                 } else {
-                    throw new IllegalTerminalPrintException("🐶 BARK! Use terminal.print(), not System.out.println()");
+                    throw new IllegalTerminalPrintException("🐶 BARK! Use terminal.print() instead of System.out.println()");
                 }
             }
 
-            @Override
-            public void print(String x) {
-                if (isFromTrustedSource() || !strict) {
-                    originalOut.print(x);
-                } else {
-                    throw new IllegalTerminalPrintException("🐶 BARK! Use terminal.print(), not System.out.print()");
-                }
-            }
+            @Override public void println(String x)    { handle(x); }
+            @Override public void println(int x)       { handle(x); }
+            @Override public void println(double x)    { handle(x); }
+            @Override public void println(boolean x)   { handle(x); }
+            @Override public void println(char x)      { handle(x); }
+            @Override public void println(long x)      { handle(x); }
+            @Override public void println(Object x)    { handle(x); }
+            @Override public void println(char[] x)    { handle(x); }
+            @Override public void println(float x)     { handle(x); }
+            @Override public void print(String x)      { handle(x); }
+            @Override public void print(int x)         { handle(x); }
+            @Override public void print(double x)      { handle(x); }
+            @Override public void print(boolean x)     { handle(x); }
+            @Override public void print(char x)        { handle(x); }
+            @Override public void print(long x)        { handle(x); }
+            @Override public void print(Object x)      { handle(x); }
+            @Override public void print(char[] x)      { handle(x); }
+            @Override public void print(float x)       { handle(x); }
         });
     }
 
@@ -58,7 +61,7 @@ public class PrintDog {
         try {
             action.run();
         } finally {
-            start(true); // re-engage the dog
+            start(true);
         }
     }
 }
