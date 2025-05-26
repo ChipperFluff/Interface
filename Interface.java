@@ -5,6 +5,7 @@ import java.util.Scanner;
 import Interface.exceptions.InvalidViewActionReturn;
 import Interface.intern.v_help;
 import Interface.intern.v_select;
+import Interface.guard.PrintDog;
 
 public class Interface {
     public final Scanner scanner = new Scanner(System.in);
@@ -82,6 +83,7 @@ public class Interface {
     }
 
     public void start() {
+        PrintDog.start(true);
         View.scanner = scanner;
         registerView(v_help.class);
         registerView(v_select.class);
