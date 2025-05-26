@@ -80,8 +80,8 @@ public class PrintDog {
                 );
 
                 // 🚨 HARD CRASH
-                originalOut.println(Color.ANSI_RED + "☠️  FATAL: System.out used in untrusted context!" + Color.ANSI_RESET);
-                throw new RuntimeException("🐶 TERMINAL VIOLATION → " + content.trim());
+                System.err.println(Color.ANSI_RED + "☠️  FATAL: System.out used in untrusted context!" + Color.ANSI_RESET);
+                System.exit(123);
             }
         }
 
