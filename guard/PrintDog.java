@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.Set;
 import java.util.HashSet;
 
+import Interface.Color;
 import Interface.exceptions.IllegalTerminalPrintException;
 
 public class PrintDog {
@@ -25,6 +26,14 @@ public class PrintDog {
         trustedPackages.add("Interface.exceptions.");
         trustedPackages.add("Interface.guard.");
         trustedPackages.add("Interface.intern.");
+
+        // Setup global uncaught exception handler
+        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+            originalOut.println(Color.ANSI_RED + "🔥 UNCAUGHT EXCEPTION IN THREAD: " + thread.getName() + Color.ANSI_RESET);
+            throwable.printStackTrace(originalOut);
+            // Optional kill:
+            // System.exit(1);
+        });
 
         // Setup mirror output stream
         mirroredOut = new PrintStream(new MirrorOutputStream(originalOut), true);
@@ -49,7 +58,7 @@ public class PrintDog {
                     flushBuffer();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                e.printStackTrace(originalOut);
             }
         }
 
@@ -57,15 +66,28 @@ public class PrintDog {
             String content = buffer.toString();
             buffer.reset();
 
-            if (strict && !isFromTrustedCode()) {
-                throw new IllegalTerminalPrintException(
-                    "🐶 BARK! Use terminal.print() instead:\n→ " + content.trim()
+            Throwable t = new Throwable();
+            StackTraceElement[] stack = t.getStackTrace();
+
+            if (strict && !isFromTrustedCode(stack)) {
+                // Visual scream
+                originalOut.println(
+                    Color.ANSI_WHITE + Color.ANSI_RED_BACKGROUND +
+                    "🐶 BARK! UNAUTHORIZED TERMINAL PRINT DETECTED!" +
+                    Color.ANSI_RESET + "\n" +
+                    Color.ANSI_YELLOW + "→ Use terminal.print() instead.\n" +
+                    "→ Offending content:\n" +
+                    Color.ANSI_WHITE + content.trim() + Color.ANSI_RESET
                 );
+
+                // Throw in new thread so JVM doesn't suppress it
+                new Thread(() -> {
+                    throw new IllegalTerminalPrintException("🐶 Terminal misuse:\n→ " + content.trim());
+                }).start();
             }
         }
 
-        private boolean isFromTrustedCode() {
-            StackTraceElement[] stack = Thread.currentThread().getStackTrace();
+        private boolean isFromTrustedCode(StackTraceElement[] stack) {
             for (StackTraceElement frame : stack) {
                 String cls = frame.getClassName();
                 for (String prefix : trustedPackages) {
