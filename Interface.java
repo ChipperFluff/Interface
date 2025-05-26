@@ -46,15 +46,12 @@ public class Interface {
         selectedView.draw();
         System.out.flush(); 
 
-        int overheadLines = 2; // prompt + debug (or just prompt if no debug)
+        int overheadLines = 1; // prompt + debug (or just prompt if no debug)
         int linesToFill = Math.max(0, this.__terminalSize[0] - __renderCycleLines - overheadLines);
 
         for (int i = 0; i < linesToFill; i++) {
             System.out.println();
         }
-
-        System.out.printf("TerminalSize: [%d, %d] RenderCycleLines: %d LinesToFill: %d%n",
-            this.__terminalSize[0], this.__terminalSize[1], this.__renderCycleLines, linesToFill);
 
         String view_prompt = (selectedView.viewPrompt==null ? "" : selectedView.viewPrompt);
         System.out.print(view_prompt + "> ");
