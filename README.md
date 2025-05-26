@@ -34,6 +34,7 @@ Illegal `System.out.println()` calls might slip through without triggering a bar
 Yes, even in this latest release. Bad doggy. This is known and will be fixed.  
 But for now, assume he’s glaring silently from a corner... judging.
 </div>
+<br>
 
 <div align="left">
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBrq5-bATLBa895xH9ulLvpGOMGzpW2xZJsA&s" width="300"/>
