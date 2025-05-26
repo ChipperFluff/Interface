@@ -27,10 +27,9 @@ Here are the ones currently watching...
 
 ### PrintDog
 
-<div align="center">
+<div align="left">
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBrq5-bATLBa895xH9ulLvpGOMGzpW2xZJsA&s" width="200"/>
 </div>
-
 
 > **PrintDog**: *A cuddly promise from the future. A frothing leg-biter from the waist-down today.*
 
