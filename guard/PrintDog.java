@@ -59,6 +59,7 @@ public class PrintDog {
                 }
             } catch (Exception e) {
                 e.printStackTrace(originalOut);
+                System.exit(69);
             }
         }
 
@@ -95,15 +96,6 @@ public class PrintDog {
                 }
             }
             return false;
-        }
-    }
-
-    public static void bypass(Runnable r) {
-        System.setOut(originalOut);
-        try {
-            r.run();
-        } finally {
-            start(strict);
         }
     }
 }
