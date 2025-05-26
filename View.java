@@ -54,4 +54,8 @@ public abstract class View {
     public static int getTerminalHeight() {
         return __base.__terminalSize[0];
     }
+
+    public static int getCurrentRclCount() {
+        return __base.__renderCycleLines;
+    }
 }

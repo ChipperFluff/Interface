@@ -26,6 +26,7 @@ CLI micro framework made in java
      v_select
    - removed debug line in Interface class i forgot UwU
    - now has acces to the terminal size via getter on every view
+   - and also can acces current rcl (Render cycle line) count for better reactive menues
 
 - v0.1.0 (25.05.2025) Made Interface its own module
 	- manages views via View class
