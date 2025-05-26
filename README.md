@@ -27,14 +27,12 @@ Here are the ones currently watching...
 
 ### PrintDog
 
-<div style="border-left: 5px solid red; padding: 10px; background-color: #ffe6e6; color: #8b0000; font-weight: bold;">
-⚠️ WARNING – Active in <a href=""https://github.com/ChipperFluff/Interface/releases/tag/v1.0.1" style="color: inherit; text-decoration: underline;">v1.0.1</a>:  
-PrintDog is currently asleep on duty.  
-Illegal `System.out.println()` calls might slip through without triggering a bark or throw.  
-Yes, even in this latest release. Bad doggy. This is known and will be fixed.  
-But for now, assume he’s glaring silently from a corner... judging.
-</div>
-<br>
+> [!WARNING]
+> ⚠️ **KNOWN BUG (v1.0.1):**
+> PrintDog is currently asleep on duty.
+> Illegal `System.out.println()` calls might slip through without triggering a bark or throw.
+> Yes, even in this latest release. Bad doggy. This is known and will be fixed.
+> But for now, assume he’s glaring silently from a corner... judging.
 
 <div align="left">
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBrq5-bATLBa895xH9ulLvpGOMGzpW2xZJsA&s" width="300"/>
