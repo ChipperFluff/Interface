@@ -46,4 +46,12 @@ public abstract class View {
         __base.__renderCycleLines += 1;
         System.out.print(text);
     }
+
+    public static int getTerminalWidth() {
+        return __base.__terminalSize[1];
+    }
+
+    public static int getTerminalHeight() {
+        return __base.__terminalSize[0];
+    }
 }

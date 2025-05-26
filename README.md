@@ -24,8 +24,8 @@ CLI micro framework made in java
 - v0.1.1 (26.05.2025) PATCH
    - now posible to select a default view instad of hardcoded 
      v_select
-
    - removed debug line in Interface class i forgot UwU
+   - now has acces to the terminal size via getter on every view
 
 - v0.1.0 (25.05.2025) Made Interface its own module
 	- manages views via View class
