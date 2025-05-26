@@ -47,6 +47,11 @@ its the goodest boyo of em all... k9... kinda? idk looks like him
 
 ## Changelog
 
+- v1.0.1 (26.05.2025) Second release  
+   - added guards, split View, made actions stable  
+   - PrintDog now bites println users  
+   - layout safe, debug cute, we barkin now UwU
+
 - v1.0.1 (26.05.2025) Better saftey and strucutre
    - added guard package to guard for security
       - PrintDog the cute k9 like hero to stop you from using    
