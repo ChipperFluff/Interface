@@ -21,7 +21,10 @@ CLI micro framework made in java
 
 ## Changelog
 
-- v0.1 (25.05.2025) Made Interface its own module
+- v0.1.1 (26.05.2025) PATCH: made it posible to select a default view on inittiantion of Interface
+  so v_select is not hardcoded
+
+- v0.1.0 (25.05.2025) Made Interface its own module
 	- manages views via View class
 	- has Action classes and predefined funtionality: a_redirect, a_nop, a_exit
 	- uses itself to show v_select to make a menue selection
