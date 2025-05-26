@@ -43,6 +43,8 @@ So PrintDog bites early to save your future.
 
 Use `terminal.print()`. Or face the bark.
 
+its the goodest boyo of em all... k9... kinda? idk looks like him
+
 ## Changelog
 
 - v1.0.1 (26.05.2025) Better saftey and strucutre
