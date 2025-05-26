@@ -2,54 +2,79 @@ package Interface.guard;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.ByteArrayOutputStream;
 import java.util.Set;
 import java.util.HashSet;
 
 import Interface.exceptions.IllegalTerminalPrintException;
 
 public class PrintDog {
-    private static final PrintStream originalOut = System.out;
     private static final Set<String> trustedPackages = new HashSet<>();
     private static boolean strict = true;
+    private static PrintStream originalOut;
+    private static PrintStream mirroredOut;
 
     public static void start(boolean strictMode) {
         strict = strictMode;
-        trustedPackages.add("Interface.");
-        trustedPackages.add("views."); // add more if needed
 
-        System.setOut(new PrintStream(new OutputSniffer(originalOut), true));
+        originalOut = System.out;
+
+        // Register your actual source packages only
+        trustedPackages.add("Interface.");
+        trustedPackages.add("Interface.action.");
+        trustedPackages.add("Interface.exceptions.");
+        trustedPackages.add("Interface.guard.");
+        trustedPackages.add("Interface.intern.");
+
+        // Setup mirror output stream
+        mirroredOut = new PrintStream(new MirrorOutputStream(originalOut), true);
+        System.setOut(mirroredOut);
     }
 
-    private static class OutputSniffer extends OutputStream {
-        private final PrintStream passthrough;
+    private static class MirrorOutputStream extends OutputStream {
+        private final OutputStream original;
+        private final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 
-        public OutputSniffer(PrintStream passthrough) {
-            this.passthrough = passthrough;
+        public MirrorOutputStream(OutputStream original) {
+            this.original = original;
         }
 
         @Override
         public void write(int b) {
-            checkCaller();
-            passthrough.write(b);
+            try {
+                original.write(b);
+                buffer.write(b);
+
+                if (b == '\n') {
+                    flushBuffer();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
-        @Override
-        public void write(byte[] b, int off, int len) {
-            checkCaller();
-            passthrough.write(b, off, len);
+        private void flushBuffer() {
+            String content = buffer.toString();
+            buffer.reset();
+
+            if (strict && !isFromTrustedCode()) {
+                throw new IllegalTerminalPrintException(
+                    "🐶 BARK! Use terminal.print() instead:\n→ " + content.trim()
+                );
+            }
         }
 
-        private void checkCaller() {
-            if (!strict) return;
+        private boolean isFromTrustedCode() {
             StackTraceElement[] stack = Thread.currentThread().getStackTrace();
-            for (StackTraceElement elem : stack) {
-                String cls = elem.getClassName();
+            for (StackTraceElement frame : stack) {
+                String cls = frame.getClassName();
                 for (String prefix : trustedPackages) {
-                    if (cls.startsWith(prefix)) return; // trusted, allow
+                    if (cls.startsWith(prefix)) {
+                        return true;
+                    }
                 }
             }
-
-            throw new IllegalTerminalPrintException("🐶 BARK! Raw output detected! Use terminal.print()");
+            return false;
         }
     }
 
