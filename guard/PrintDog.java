@@ -4,64 +4,61 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Set;
 import java.util.HashSet;
+
 import Interface.exceptions.IllegalTerminalPrintException;
 
 public class PrintDog {
     private static final PrintStream originalOut = System.out;
     private static final Set<String> trustedPackages = new HashSet<>();
+    private static boolean strict = true;
 
-    public static void start(boolean strict) {
+    public static void start(boolean strictMode) {
+        strict = strictMode;
         trustedPackages.add("Interface.");
+        trustedPackages.add("views."); // add more if needed
 
-        System.setOut(new PrintStream(new OutputStream() {
-            @Override public void write(int b) {}
-        }, true) {
-            private void handle(Object data) {
-                if (isFromTrustedSource() || !strict) {
-                    originalOut.println(data);
-                } else {
-                    throw new IllegalTerminalPrintException("🐶 BARK! Use terminal.print() instead of System.out.println()");
+        System.setOut(new PrintStream(new OutputSniffer(originalOut), true));
+    }
+
+    private static class OutputSniffer extends OutputStream {
+        private final PrintStream passthrough;
+
+        public OutputSniffer(PrintStream passthrough) {
+            this.passthrough = passthrough;
+        }
+
+        @Override
+        public void write(int b) {
+            checkCaller();
+            passthrough.write(b);
+        }
+
+        @Override
+        public void write(byte[] b, int off, int len) {
+            checkCaller();
+            passthrough.write(b, off, len);
+        }
+
+        private void checkCaller() {
+            if (!strict) return;
+            StackTraceElement[] stack = Thread.currentThread().getStackTrace();
+            for (StackTraceElement elem : stack) {
+                String cls = elem.getClassName();
+                for (String prefix : trustedPackages) {
+                    if (cls.startsWith(prefix)) return; // trusted, allow
                 }
             }
 
-            @Override public void println(String x)    { handle(x); }
-            @Override public void println(int x)       { handle(x); }
-            @Override public void println(double x)    { handle(x); }
-            @Override public void println(boolean x)   { handle(x); }
-            @Override public void println(char x)      { handle(x); }
-            @Override public void println(long x)      { handle(x); }
-            @Override public void println(Object x)    { handle(x); }
-            @Override public void println(char[] x)    { handle(x); }
-            @Override public void println(float x)     { handle(x); }
-            @Override public void print(String x)      { handle(x); }
-            @Override public void print(int x)         { handle(x); }
-            @Override public void print(double x)      { handle(x); }
-            @Override public void print(boolean x)     { handle(x); }
-            @Override public void print(char x)        { handle(x); }
-            @Override public void print(long x)        { handle(x); }
-            @Override public void print(Object x)      { handle(x); }
-            @Override public void print(char[] x)      { handle(x); }
-            @Override public void print(float x)       { handle(x); }
-        });
-    }
-
-    private static boolean isFromTrustedSource() {
-        StackTraceElement[] stack = Thread.currentThread().getStackTrace();
-        for (StackTraceElement frame : stack) {
-            String className = frame.getClassName();
-            for (String prefix : trustedPackages) {
-                if (className.startsWith(prefix)) return true;
-            }
+            throw new IllegalTerminalPrintException("🐶 BARK! Raw output detected! Use terminal.print()");
         }
-        return false;
     }
 
-    public static void bypass(Runnable action) {
+    public static void bypass(Runnable r) {
         System.setOut(originalOut);
         try {
-            action.run();
+            r.run();
         } finally {
-            start(true);
+            start(strict);
         }
     }
 }
