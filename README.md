@@ -28,10 +28,11 @@ Here are the ones currently watching...
 ### PrintDog
 
 > [!WARNING]
-> ⚠️ **KNOWN BUG (v1.0.1):**
-> PrintDog is currently asleep on duty.
-> Illegal `System.out.println()` calls might slip through without triggering a bark or throw.
-> Yes, even in this latest release. Bad doggy. This is known and will be fixed.
+> ⚠️ **ACTIVE ISSUE IN [v1.0.1](https://github.com/ChipperFluff/Interface/releases/tag/v1.0.1)**
+> 
+> PrintDog is currently asleep on duty.  
+> Illegal `System.out.println()` calls might slip through without triggering a bark or throw.  
+> Yes, even in this latest release. Bad doggy. This is a known bug and will be fixed.  
 > But for now, assume he’s glaring silently from a corner... judging.
 
 <div align="left">
