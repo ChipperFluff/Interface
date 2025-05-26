@@ -26,7 +26,7 @@ public class ViewTerminalAcces {
         return base.__renderCycleLines;
     }
 
-    private void fill(int size) {
+    public void fill(int size) {
         for (int i = 0; i < size; i++) {
             print("\n");
         }
