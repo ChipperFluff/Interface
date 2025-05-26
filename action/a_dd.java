@@ -26,9 +26,8 @@ public class a_dd extends Action {
             String typeColor = getTypeColor(type);
 
             System.out.println(
-                Color.ANSI_WHITE + "[" + i + "] " +
-                typeColor + "(" + type + ")" +
-                Color.ANSI_RESET + " => " + formatValue(item)
+                Color.ANSI_WHITE + "[" + i + "] => " +
+                typeColor + "(" + type + ") " + formatValue(item) + Color.ANSI_RESET
             );
         }
 
@@ -40,61 +39,53 @@ public class a_dd extends Action {
         if (obj == null) return Color.ANSI_RED + "null" + Color.ANSI_RESET;
 
         if (obj instanceof Map) {
-            StringBuilder sb = new StringBuilder("Map {\n");
+            StringBuilder sb = new StringBuilder(Color.ANSI_PURPLE + "Map {\n");
             ((Map<?, ?>) obj).forEach((k, v) -> {
                 String type = (v == null) ? "null" : v.getClass().getSimpleName();
                 String color = getTypeColor(type);
-                sb.append("  ").append(k).append(" => ")
-                .append(color).append("(").append(type).append(") ")
-                .append(formatValue(v)).append(Color.ANSI_RESET).append("\n");
+                sb.append(Color.ANSI_WHITE + "  " + k + " => " + color + "(" + type + ") " + formatValue(v) + "\n");
             });
-            sb.append("}");
+            sb.append(Color.ANSI_PURPLE + "}");
             return sb.toString();
         }
 
         if (obj instanceof List) {
-            StringBuilder sb = new StringBuilder("List [\n");
+            StringBuilder sb = new StringBuilder(Color.ANSI_BLUE + "List [\n");
             int i = 0;
             for (Object val : (List<?>) obj) {
                 String type = (val == null) ? "null" : val.getClass().getSimpleName();
                 String color = getTypeColor(type);
-                sb.append("  ").append(i++).append(" => ")
-                .append(color).append("(").append(type).append(") ")
-                .append(formatValue(val)).append(Color.ANSI_RESET).append("\n");
+                sb.append(Color.ANSI_WHITE + "  " + i++ + " => " + color + "(" + type + ") " + formatValue(val) + "\n");
             }
-            sb.append("]");
+            sb.append(Color.ANSI_BLUE + "]");
             return sb.toString();
         }
 
         if (obj instanceof Set) {
-            StringBuilder sb = new StringBuilder("Set {\n");
+            StringBuilder sb = new StringBuilder(Color.ANSI_RED + "Set {\n");
             for (Object val : (Set<?>) obj) {
                 String type = (val == null) ? "null" : val.getClass().getSimpleName();
                 String color = getTypeColor(type);
-                sb.append("  ")
-                .append(color).append("(").append(type).append(") ")
-                .append(formatValue(val)).append(Color.ANSI_RESET).append("\n");
+                sb.append(Color.ANSI_WHITE + "  => " + color + "(" + type + ") " + formatValue(val) + "\n");
             }
-            sb.append("}");
+            sb.append(Color.ANSI_RED + "}");
             return sb.toString();
         }
 
         if (obj.getClass().isArray()) {
-            StringBuilder sb = new StringBuilder("Array [\n");
+            StringBuilder sb = new StringBuilder(Color.ANSI_CYAN + "Array [\n");
             int len = java.lang.reflect.Array.getLength(obj);
             for (int i = 0; i < len; i++) {
                 Object val = java.lang.reflect.Array.get(obj, i);
                 String type = (val == null) ? "null" : val.getClass().getSimpleName();
                 String color = getTypeColor(type);
-                sb.append("  ").append(i).append(" => ")
-                .append(color).append("(").append(type).append(") ")
-                .append(formatValue(val)).append(Color.ANSI_RESET).append("\n");
+                sb.append(Color.ANSI_WHITE + "  " + i + " => " + color + "(" + type + ") " + formatValue(val) + "\n");
             }
-            sb.append("]");
+            sb.append(Color.ANSI_CYAN + "]");
             return sb.toString();
         }
 
-        return obj.toString();
+        return getTypeColor(obj.getClass().getSimpleName()) + obj.toString();
     }
 
     private String getTypeColor(String type) {
