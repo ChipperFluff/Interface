@@ -16,7 +16,7 @@ public class a_dd extends Action {
 
     @Override
     public Boolean execute(Interface base) {
-        System.out.println("===== Laravel-style Dump & Die =====");
+        System.out.println("===== Dump & Die =====");
 
         for (int i = 0; i < data.length; i++) {
             System.out.println("[" + i + "] => " + formatValue(data[i]));
