@@ -19,6 +19,26 @@ CLI micro framework made in java
 
  - more timey wimey wibly wobly... stuff
 
+## Guards
+
+What are guards?  
+They're non-blocking utility watchdogs that silently—or loudly—protect Interface from developer chaos.  
+Here are the ones currently watching...
+
+### PrintDog
+
+> **PrintDog**: *A cuddly promise from the future. A frothing leg-biter from the waist-down today.*
+
+**What is it?**  
+A terminal output guardian that barks (and throws) if `System.out.println()` is used outside the framework.  
+It exists because raw printing breaks Interface’s render cycle. Like, seriously. It ruins everything.
+
+**Why?**  
+Because if you print without using `terminal.print()`, the layout explodes and the terminal cries.  
+So PrintDog bites early to save your future.
+
+Use `terminal.print()`. Or face the bark.
+
 ## Changelog
 
 - v1.0.1 (26.05.2025) Better saftey and strucutre
