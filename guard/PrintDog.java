@@ -70,7 +70,6 @@ public class PrintDog {
             StackTraceElement[] stack = t.getStackTrace();
 
             if (strict && !isFromTrustedCode(stack)) {
-                // Visual scream
                 originalOut.println(
                     Color.ANSI_WHITE + Color.ANSI_RED_BACKGROUND +
                     "🐶 BARK! UNAUTHORIZED TERMINAL PRINT DETECTED!" +
@@ -80,10 +79,9 @@ public class PrintDog {
                     Color.ANSI_WHITE + content.trim() + Color.ANSI_RESET
                 );
 
-                // Throw in new thread so JVM doesn't suppress it
-                new Thread(() -> {
-                    throw new IllegalTerminalPrintException("🐶 Terminal misuse:\n→ " + content.trim());
-                }).start();
+                // 🚨 HARD CRASH
+                originalOut.println(Color.ANSI_RED + "☠️  FATAL: System.out used in untrusted context!" + Color.ANSI_RESET);
+                throw new RuntimeException("🐶 TERMINAL VIOLATION → " + content.trim());
             }
         }
 
