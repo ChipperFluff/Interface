@@ -42,11 +42,11 @@ public class a_dd extends Action {
         if (obj instanceof Map) {
             StringBuilder sb = new StringBuilder("Map {\n");
             ((Map<?, ?>) obj).forEach((k, v) -> {
-                String type = v == null ? "null" : v.getClass().getSimpleName();
+                String type = (v == null) ? "null" : v.getClass().getSimpleName();
                 String color = getTypeColor(type);
                 sb.append("  ").append(k).append(" => ")
-                  .append(color).append("(").append(type).append(") ")
-                  .append(formatValue(v)).append(Color.ANSI_RESET).append("\n");
+                .append(color).append("(").append(type).append(") ")
+                .append(formatValue(v)).append(Color.ANSI_RESET).append("\n");
             });
             sb.append("}");
             return sb.toString();
@@ -56,11 +56,11 @@ public class a_dd extends Action {
             StringBuilder sb = new StringBuilder("List [\n");
             int i = 0;
             for (Object val : (List<?>) obj) {
-                String type = val == null ? "null" : val.getClass().getSimpleName();
+                String type = (val == null) ? "null" : val.getClass().getSimpleName();
                 String color = getTypeColor(type);
                 sb.append("  ").append(i++).append(" => ")
-                  .append(color).append("(").append(type).append(") ")
-                  .append(formatValue(val)).append(Color.ANSI_RESET).append("\n");
+                .append(color).append("(").append(type).append(") ")
+                .append(formatValue(val)).append(Color.ANSI_RESET).append("\n");
             }
             sb.append("]");
             return sb.toString();
@@ -69,11 +69,11 @@ public class a_dd extends Action {
         if (obj instanceof Set) {
             StringBuilder sb = new StringBuilder("Set {\n");
             for (Object val : (Set<?>) obj) {
-                String type = val == null ? "null" : val.getClass().getSimpleName();
+                String type = (val == null) ? "null" : val.getClass().getSimpleName();
                 String color = getTypeColor(type);
                 sb.append("  ")
-                  .append(color).append("(").append(type).append(") ")
-                  .append(formatValue(val)).append(Color.ANSI_RESET).append("\n");
+                .append(color).append("(").append(type).append(") ")
+                .append(formatValue(val)).append(Color.ANSI_RESET).append("\n");
             }
             sb.append("}");
             return sb.toString();
@@ -81,14 +81,14 @@ public class a_dd extends Action {
 
         if (obj.getClass().isArray()) {
             StringBuilder sb = new StringBuilder("Array [\n");
-            Object[] arr = (Object[]) obj;
-            for (int i = 0; i < arr.length; i++) {
-                Object val = arr[i];
-                String type = val == null ? "null" : val.getClass().getSimpleName();
+            int len = java.lang.reflect.Array.getLength(obj);
+            for (int i = 0; i < len; i++) {
+                Object val = java.lang.reflect.Array.get(obj, i);
+                String type = (val == null) ? "null" : val.getClass().getSimpleName();
                 String color = getTypeColor(type);
                 sb.append("  ").append(i).append(" => ")
-                  .append(color).append("(").append(type).append(") ")
-                  .append(formatValue(val)).append(Color.ANSI_RESET).append("\n");
+                .append(color).append("(").append(type).append(") ")
+                .append(formatValue(val)).append(Color.ANSI_RESET).append("\n");
             }
             sb.append("]");
             return sb.toString();
