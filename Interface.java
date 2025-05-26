@@ -10,9 +10,16 @@ public class Interface {
     public final Scanner scanner = new Scanner(System.in);
     private Global global = Global.getInstance();
     private Boolean active = true;
+    private Class<? extends View> defaultView = v_select.class;
     private View selectedView;
     public int[] __terminalSize;
     public int __renderCycleLines;
+
+    public Interface() {}
+
+    public Interface(Class<? extends View> defaultView) {
+        this.defaultView = defaultView;
+    }
 
     public void registerView(Class<? extends View> viewClass) {
         global.registeredViews.add(viewClass);
@@ -69,7 +76,7 @@ public class Interface {
     }
 
     private void mainLoop() {
-        selectView(v_select.class);
+        selectView(defaultView);
 
         while (active) {
             active = cycle();
