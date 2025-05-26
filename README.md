@@ -21,6 +21,11 @@ CLI micro framework made in java
 
 ## Changelog
 
+- v0.0.1 (26.05.2025) First release
+   - for better version control this is now v0.0.1
+   - still wil leave the old log
+   - chipi chipi chapa chapa UWU yey
+
 - v0.1.1 (26.05.2025) PATCH
    - now posible to select a default view instad of hardcoded 
      v_select
