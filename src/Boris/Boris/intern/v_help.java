@@ -1,7 +1,7 @@
-package Interface.intern;
+package Boris.intern;
 
-import Interface.View;
-import Interface.Action;
+import Boris.View;
+import Boris.Action;
 
 public class v_help extends View {
     @Override

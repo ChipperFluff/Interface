@@ -1,9 +1,9 @@
-package Interface;
+package Boris;
 
-import Interface.action.a_redirect;
-import Interface.action.a_stop;
-import Interface.action.a_nop;
-import Interface.action.a_dd;
+import Boris.action.a_redirect;
+import Boris.action.a_stop;
+import Boris.action.a_nop;
+import Boris.action.a_dd;
 
 public class ViewActionFactories {
     public Action redirect(Class<? extends View> target) {

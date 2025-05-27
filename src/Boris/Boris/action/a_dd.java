@@ -1,8 +1,8 @@
-package Interface.action;
+package Boris.action;
 
-import Interface.Action;
-import Interface.Interface;
-import Interface.Color;
+import Boris.Action;
+import Boris.Interface;
+import Boris.Color;
 
 import java.util.List;
 import java.util.Map;

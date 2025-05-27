@@ -1,4 +1,4 @@
-package Interface;
+package Boris;
 
 public class Helper {
     public static void clearScreen() {

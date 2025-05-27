@@ -1,6 +1,6 @@
-package Interface.exceptions;
+package Boris.exceptions;
 
-import Interface.View;
+import Boris.View;
 
 public class InvalidRedirect extends RuntimeException {
     public InvalidRedirect(Class<? extends View> target) {

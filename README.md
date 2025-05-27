@@ -1,4 +1,4 @@
-# Interface
+# Boris
 
 ## What is it
 
@@ -22,13 +22,13 @@ CLI micro framework made in java
 ## Guards
 
 What are guards?  
-They're non-blocking utility watchdogs that silently—or loudly—protect Interface from developer chaos.  
+They're non-blocking utility watchdogs that silently—or loudly—protect Boris from developer chaos.  
 Here are the ones currently watching...
 
 ### PrintDog
 
 > [!WARNING]
-> ⚠️ **ACTIVE ISSUE IN [v1.0.1](https://github.com/ChipperFluff/Interface/releases/tag/v1.0.1)**
+> ⚠️ **ACTIVE ISSUE IN [v1.0.1](https://github.com/ChipperFluff/Boris/releases/tag/v1.0.1)**
 > 
 > PrintDog is currently asleep on duty.  
 > Illegal `System.out.println()` calls might slip through without triggering a bark or throw.  
@@ -43,7 +43,7 @@ Here are the ones currently watching...
 
 **What is it?**  
 A terminal output guardian that barks (and throws) if `System.out.println()` is used outside the framework.  
-It exists because raw printing breaks Interface’s render cycle. Like, seriously. It ruins everything.
+It exists because raw printing breaks Boris’s render cycle. Like, seriously. It ruins everything.
 
 **Why?**  
 Because if you print without using `terminal.print()`, the layout explodes and the terminal cries.  
@@ -94,11 +94,11 @@ its the goodest boyo of em all... k9... kinda? idk looks like him
 - v0.1.1 (26.05.2025) PATCH
    - now posible to select a default view instad of hardcoded 
      v_select
-   - removed debug line in Interface class i forgot UwU
+   - removed debug line in Boris class i forgot UwU
    - now has acces to the terminal size via getter on every view
    - and also can acces current rcl (Render cycle line) count for better reactive menues
 
-- v0.1.0 (25.05.2025) Made Interface its own module
+- v0.1.0 (25.05.2025) Made Boris its own module
 	- manages views via View class
 	- has Action classes and predefined funtionality: a_redirect, a_nop, a_exit
 	- uses itself to show v_select to make a menue selection

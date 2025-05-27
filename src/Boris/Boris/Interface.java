@@ -1,11 +1,11 @@
-package Interface;
+package Boris;
 
 import java.util.Scanner;
 
-import Interface.exceptions.InvalidViewActionReturn;
-import Interface.intern.v_help;
-import Interface.intern.v_select;
-import Interface.guard.PrintDog;
+import Boris.exceptions.InvalidViewActionReturn;
+import Boris.intern.v_help;
+import Boris.intern.v_select;
+import Boris.guard.PrintDog;
 
 public class Interface {
     public final Scanner scanner = new Scanner(System.in);

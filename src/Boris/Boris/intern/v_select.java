@@ -1,11 +1,11 @@
-package Interface.intern;
+package Boris.intern;
 
-import Interface.Color;
+import Boris.Color;
 
-import Interface.Action;
-import Interface.View;
-import Interface.action.a_nop;
-import Interface.action.a_redirect;
+import Boris.Action;
+import Boris.View;
+import Boris.action.a_nop;
+import Boris.action.a_redirect;
 
 public class v_select extends View {
     private String viewList;

@@ -1,4 +1,4 @@
-package Interface;
+package Boris;
 
 public abstract class Action {
     protected Global global = Global.getInstance();

@@ -1,4 +1,4 @@
-package Interface.exceptions;
+package Boris.exceptions;
 
 public class DuplicateViewMatchException extends RuntimeException {
     public DuplicateViewMatchException(String input, int count) {

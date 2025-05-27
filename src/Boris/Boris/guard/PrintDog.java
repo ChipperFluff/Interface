@@ -1,4 +1,4 @@
-package Interface.guard;
+package Boris.guard;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -6,7 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.Set;
 import java.util.HashSet;
 
-import Interface.Color;
+import Boris.Color;
 
 public class PrintDog {
     private static final Set<String> trustedPackages = new HashSet<>();
@@ -20,11 +20,11 @@ public class PrintDog {
         originalOut = System.out;
 
         // Register your actual source packages only
-        trustedPackages.add("Interface.");
-        trustedPackages.add("Interface.action.");
-        trustedPackages.add("Interface.exceptions.");
-        trustedPackages.add("Interface.guard.");
-        trustedPackages.add("Interface.intern.");
+        trustedPackages.add("Boris.");
+        trustedPackages.add("Boris.action.");
+        trustedPackages.add("Boris.exceptions.");
+        trustedPackages.add("Boris.guard.");
+        trustedPackages.add("Boris.intern.");
 
         // Setup global uncaught exception handler
         Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {

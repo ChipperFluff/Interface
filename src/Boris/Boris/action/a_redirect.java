@@ -1,9 +1,9 @@
-package Interface.action;
+package Boris.action;
 
-import Interface.Action;
-import Interface.Interface;
-import Interface.View;
-import Interface.exceptions.InvalidRedirect;
+import Boris.Action;
+import Boris.Interface;
+import Boris.View;
+import Boris.exceptions.InvalidRedirect;
 
 public class a_redirect extends Action{
     public Class<? extends View> targetClass;

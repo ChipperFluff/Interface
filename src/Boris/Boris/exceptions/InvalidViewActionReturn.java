@@ -1,4 +1,4 @@
-package Interface.exceptions;
+package Boris.exceptions;
 
 public class InvalidViewActionReturn extends RuntimeException {
     public InvalidViewActionReturn() {

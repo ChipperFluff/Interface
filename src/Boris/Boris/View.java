@@ -1,8 +1,8 @@
-package Interface;
+package Boris;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import Interface.exceptions.DuplicateViewMatchException;
+import Boris.exceptions.DuplicateViewMatchException;
 
 public abstract class View {
     protected static Global global = Global.getInstance();
