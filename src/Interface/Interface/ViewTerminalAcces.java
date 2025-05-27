@@ -1,7 +1,5 @@
 package Interface;
 
-import Interface.Interface;
-
 public class ViewTerminalAcces {
     private Interface base;
 

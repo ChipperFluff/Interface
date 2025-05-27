@@ -7,7 +7,6 @@ import java.util.Set;
 import java.util.HashSet;
 
 import Interface.Color;
-import Interface.exceptions.IllegalTerminalPrintException;
 
 public class PrintDog {
     private static final Set<String> trustedPackages = new HashSet<>();

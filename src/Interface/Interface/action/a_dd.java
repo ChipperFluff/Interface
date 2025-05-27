@@ -2,7 +2,6 @@ package Interface.action;
 
 import Interface.Action;
 import Interface.Interface;
-import Interface.View;
 import Interface.Color;
 
 import java.util.List;
