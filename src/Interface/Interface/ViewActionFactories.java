@@ -1,8 +1,5 @@
 package Interface;
 
-import Interface.Interface;
-import Interface.View;
-import Interface.Action;
 import Interface.action.a_redirect;
 import Interface.action.a_stop;
 import Interface.action.a_nop;
